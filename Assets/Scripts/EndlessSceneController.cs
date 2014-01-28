@@ -7,6 +7,8 @@ public class EndlessSceneController : MonoBehaviour {
 
 	public int speed = 600;
 
+	public int cloudWidth = 2220;
+
 	float distance = 0;
 	Vector3 lastPos;
 	Vector3 initPos;
@@ -18,20 +20,25 @@ public class EndlessSceneController : MonoBehaviour {
 	public GameObject prefab;
 
 	bool isCloudCreated = false;
+
+	GameObject test01;
+	GameObject test02;
 	// Use this for initialization
 	void Start () {
 		lastPos = this.transform.position;
 		initPos = this.transform.position;
 		cloud01 = GameObject.Find("Cloud01");
 		cloud02 = GameObject.Find("Cloud02");
-		GameObject test01 = (GameObject)Instantiate(prefab, new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
-		GameObject test02 = (GameObject)Instantiate(prefab, new Vector3(0, 1, 2220), Quaternion.Euler(0, 0, 0));
-		Destroy(test01, 2220/speed+1);
-		Destroy(test02, 2*2220/speed+1);
+		test01 = (GameObject)Instantiate(prefab, new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
+		test02 = (GameObject)Instantiate(prefab, new Vector3(0, 1, 2220), Quaternion.Euler(0, 0, 0));
+		//Destroy(test01, 2220/speed+1);
+		//Destroy(test02, 2*2220/speed+1);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		test01.transform.Translate(0, 0, -Time.deltaTime * 50);
+		/*
 		distance += Vector3.Distance(this.transform.position, lastPos);
 		lastPos = this.transform.position;
 		if(distance > 2220){
@@ -48,7 +55,8 @@ public class EndlessSceneController : MonoBehaviour {
 			//}
 		}
 
-		this.transform.Translate(0, 0, speed*Time.deltaTime);
+		//this.transform.Translate(0, 0, speed*Time.deltaTime);
+		*/
 
 	}
 }
