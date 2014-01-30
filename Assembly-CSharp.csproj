@@ -62,8 +62,8 @@
      <Compile Include="Assets\OVR\Scripts\OVRPresetManager.cs" />
      <Compile Include="Assets\OVR\Scripts\OVRUtils.cs" />
      <Compile Include="Assets\Scripts\EndlessSceneController.cs" />
+     <Compile Include="Assets\Scripts\GametrakController.cs" />
      <Compile Include="Assets\Volumetric Clouds\Scripts\CloudsToy.cs" />
-     <Compile Include="Assets\Volumetric Clouds\Scripts\GametrakController.cs" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 5.shader" />
      <None Include="Assets\Resources\CloudsToy Shaders\CloudRealistic.shader" />
