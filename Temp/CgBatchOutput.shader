@@ -68,56 +68,6 @@ dp4 oPos.x, v0, c0
 "
 }
 
-SubProgram "xbox360 " {
-Keywords { "SOFTPARTICLES_OFF" }
-Bind "vertex" Vertex
-Bind "color" COLOR
-Bind "texcoord" TexCoord0
-Vector 4 [_MainTex_ST]
-Matrix 0 [glstate_matrix_mvp] 4
-// Shader Timing Estimate, in Cycles/64 vertex vector:
-// ALU: 8.00 (6 instructions), vertex: 32, texture: 0,
-//   sequencer: 10,  4 GPRs, 31 threads,
-// Performance (if enough threads): ~32 cycles per vector
-// * Vertex cycle estimates are assuming 3 vfetch_minis for every vfetch_full,
-//     with <= 32 bytes per vfetch_full group.
-
-"vs_360
-backbbabaaaaabaeaaaaaajmaaaaaaaaaaaaaaceaaaaaaaaaaaaaamaaaaaaaaa
-aaaaaaaaaaaaaajiaaaaaabmaaaaaailpppoadaaaaaaaaacaaaaaabmaaaaaaaa
-aaaaaaieaaaaaaeeaaacaaaeaaabaaaaaaaaaafaaaaaaaaaaaaaaagaaaacaaaa
-aaaeaaaaaaaaaaheaaaaaaaafpengbgjgofegfhifpfdfeaaaaabaaadaaabaaae
-aaabaaaaaaaaaaaaghgmhdhegbhegffpgngbhehcgjhifpgnhghaaaklaaadaaad
-aaaeaaaeaaabaaaaaaaaaaaahghdfpddfpdaaadccodacodcdadddfddcodaaakl
-aaaaaaaaaaaaaajmaabbaaadaaaaaaaaaaaaaaaaaaaabiecaaaaaaabaaaaaaad
-aaaaaaacaaaaacjaaabaaaadaaaakaaeaadafaafaaaadafaaaabpbkaaaaabaal
-aaaabaakhabfdaadaaaabcaamcaaaaaaaaaaeaagaaaabcaameaaaaaaaaaacaak
-aaaaccaaaaaaaaaaafpidaaaaaaaagiiaaaaaaaaafpibaaaaaaaagiiaaaaaaaa
-afpiaaaaaaaaapmiaaaaaaaamiapaaacaabliiaakbadadaamiapaaacaamgiiaa
-kladacacmiapaaacaalbdejekladabacmiapiadoaagmaadekladaaacmiapiaab
-aaaaaaaaocababaamiadiaaaaalalabkilaaaeaeaaaaaaaaaaaaaaaaaaaaaaaa
-"
-}
-
-SubProgram "ps3 " {
-Keywords { "SOFTPARTICLES_OFF" }
-Matrix 256 [glstate_matrix_mvp]
-Bind "vertex" Vertex
-Bind "color" Color
-Bind "texcoord" TexCoord0
-Vector 467 [_MainTex_ST]
-"sce_vp_rsx // 6 instructions using 1 registers
-[Configuration]
-8
-0000000601090100
-[Microcode]
-96
-401f9c6c0040030d8106c0836041ff84401f9c6c011d3808010400d740619f9c
-401f9c6c01d0300d8106c0c360403f80401f9c6c01d0200d8106c0c360405f80
-401f9c6c01d0100d8106c0c360409f80401f9c6c01d0000d8106c0c360411f81
-"
-}
-
 SubProgram "d3d11 " {
 Keywords { "SOFTPARTICLES_OFF" }
 Bind "vertex" Vertex
@@ -695,79 +645,6 @@ mov oD0, v1
 mad oT0.xy, v2, c10, c10.zwzw
 mov oT1.z, -r0.x
 mov oT1.w, r1
-"
-}
-
-SubProgram "xbox360 " {
-Keywords { "SOFTPARTICLES_ON" }
-Bind "vertex" Vertex
-Bind "color" COLOR
-Bind "texcoord" TexCoord0
-Vector 10 [_MainTex_ST]
-Vector 0 [_ProjectionParams]
-Vector 1 [_ScreenParams]
-Matrix 6 [glstate_matrix_modelview0] 4
-Matrix 2 [glstate_matrix_mvp] 4
-// Shader Timing Estimate, in Cycles/64 vertex vector:
-// ALU: 20.00 (15 instructions), vertex: 32, texture: 0,
-//   sequencer: 12,  5 GPRs, 31 threads,
-// Performance (if enough threads): ~32 cycles per vector
-// * Vertex cycle estimates are assuming 3 vfetch_minis for every vfetch_full,
-//     with <= 32 bytes per vfetch_full group.
-
-"vs_360
-backbbabaaaaableaaaaabeiaaaaaaaaaaaaaaceaaaaabdiaaaaabgaaaaaaaaa
-aaaaaaaaaaaaabbaaaaaaabmaaaaabacpppoadaaaaaaaaafaaaaaabmaaaaaaaa
-aaaaaaplaaaaaaiaaaacaaakaaabaaaaaaaaaaimaaaaaaaaaaaaaajmaaacaaaa
-aaabaaaaaaaaaaimaaaaaaaaaaaaaakoaaacaaabaaabaaaaaaaaaaimaaaaaaaa
-aaaaaalmaaacaaagaaaeaaaaaaaaaaniaaaaaaaaaaaaaaoiaaacaaacaaaeaaaa
-aaaaaaniaaaaaaaafpengbgjgofegfhifpfdfeaaaaabaaadaaabaaaeaaabaaaa
-aaaaaaaafpfahcgpgkgfgdhegjgpgofagbhcgbgnhdaafpfdgdhcgfgfgofagbhc
-gbgnhdaaghgmhdhegbhegffpgngbhehcgjhifpgngpgegfgmhggjgfhhdaaaklkl
-aaadaaadaaaeaaaeaaabaaaaaaaaaaaaghgmhdhegbhegffpgngbhehcgjhifpgn
-hghaaahghdfpddfpdaaadccodacodcdadddfddcodaaaklklaaaaaaaaaaaaaaab
-aaaaaaaaaaaaaaaaaaaaaabeaapmaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaeaaaaaabaiaacbaaaeaaaaaaaaaaaaaaaaaaaacigdaaaaaaabaaaaaaad
-aaaaaaafaaaaacjaaabaaaadaaaakaaeaacafaafaaaadafaaaabpbfbaaaepcka
-aaaababcaaaaaaapaaaaaabaaaaababeaaaababbaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahabfdaadaaaabcaamcaaaaaa
-aaaafaagaaaabcaameaaaaaaaaaagaaleabbbcaaccaaaaaaafpidaaaaaaaagii
-aaaaaaaaafpicaaaaaaaagiiaaaaaaaaafpibaaaaaaaapmiaaaaaaaamiapaaaa
-aabliiaakbadafaamiapaaaaaamgaaiikladaeaamiapaaaaaalbdedekladadaa
-miapaaaeaagmnajekladacaamiapiadoaananaaaocaeaeaamiabaaaaaamgmgaa
-kbadaiaamiabaaaaaalbmggmkladahaamiaiaaaaaagmmggmkladagaamiahaaaa
-aamagmaakbaeppaabeiaiaabaaaaaamgocaaaaaemiaeiaabafblmgblkladajaa
-miapiaacaaaaaaaaocacacaamiadiaaaaalalabkilabakakkiiaaaaaaaaaaaeb
-mcaaaaaamiadiaabaamgbkbiklaaabaaaaaaaaaaaaaaaaaaaaaaaaaa"
-}
-
-SubProgram "ps3 " {
-Keywords { "SOFTPARTICLES_ON" }
-Matrix 256 [glstate_matrix_modelview0]
-Matrix 260 [glstate_matrix_mvp]
-Bind "vertex" Vertex
-Bind "color" Color
-Bind "texcoord" TexCoord0
-Vector 467 [_ProjectionParams]
-Vector 466 [_MainTex_ST]
-"sce_vp_rsx // 13 instructions using 2 registers
-[Configuration]
-8
-0000000d01090200
-[Defaults]
-1
-465 1
-3f000000
-[Microcode]
-208
-401f9c6c0040030d8106c0836041ff84401f9c6c011d2808010400d740619f9c
-00001c6c01d0600d8106c0c360405ffc00001c6c01d0500d8106c0c360409ffc
-00001c6c01d0400d8106c0c360411ffc00001c6c01d0200d8106c0c360403ffc
-00009c6c01d0700d8106c0c360411ffc401f9c6c004000ff8086c08360405fa0
-40001c6c004000000286c08360403fa0401f9c6c0040000d8086c0836041ff80
-00001c6c009d100e008000c36041dffc00001c6c009d302a808000c360409ffc
-401f9c6c00c000080086c09540219fa1
 "
 }
 
@@ -1477,43 +1354,6 @@ mov_pp oC0, r0
 "
 }
 
-SubProgram "xbox360 " {
-Keywords { "SOFTPARTICLES_OFF" }
-SetTexture 0 [_MainTex] 2D
-// Shader Timing Estimate, in Cycles/64 pixel vector:
-// ALU: 5.33 (4 instructions), vertex: 0, texture: 4,
-//   sequencer: 6, interpolator: 16;    2 GPRs, 63 threads,
-// Performance (if enough threads): ~16 cycles per vector
-// * Texture cycle estimates are assuming an 8bit/component texture with no
-//     aniso or trilinear filtering.
-
-"ps_360
-backbbaaaaaaaalaaaaaaagaaaaaaaaaaaaaaaceaaaaaaaaaaaaaaiiaaaaaaaa
-aaaaaaaaaaaaaagaaaaaaabmaaaaaafdppppadaaaaaaaaabaaaaaabmaaaaaaaa
-aaaaaaemaaaaaadaaaadaaaaaaabaaaaaaaaaadmaaaaaaaafpengbgjgofegfhi
-aaklklklaaaeaaamaaabaaabaaabaaaaaaaaaaaahahdfpddfpdaaadccodacodc
-dadddfddcodaaaklaaaaaaaaaaaaaagabaaaabaaaaaaaaaiaaaaaaaaaaaabiec
-aaabaaadaaaaaaabaaaadafaaaaapbkaaaabbaacaaaabcaameaaaaaaaaaaeaad
-aaaaccaaaaaaaaaabaaiaaabbpbppgiiaaaaeaaamiaiabaaaablblaaobaaabaa
-miahababaamamaaaobaaabaamiahabaaaamablaaobabaaaamiapiaaaaaaaaaaa
-ocaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-}
-
-SubProgram "ps3 " {
-Keywords { "SOFTPARTICLES_OFF" }
-SetTexture 0 [_MainTex] 2D
-"sce_fp_rsx // 5 instructions using 2 registers
-[Configuration]
-24
-ffffffff000040250001ffff000000000000840002000000
-[Microcode]
-80
-9e021700c8011c9dc8000001c8003fe13e800140c8011c9dc8000001c8003fe1
-1e800200c9001c9dc8040001c80000010e800240c9001c9dff000001c8000001
-10810140c9001c9dc8000001c8000001
-"
-}
-
 SubProgram "d3d11 " {
 Keywords { "SOFTPARTICLES_OFF" }
 SetTexture 0 [_MainTex] 2D 0
@@ -1647,67 +1487,6 @@ mul r1, r1, r0
 mov_pp r0.w, r1
 mul_pp r0.xyz, r1, r1.w
 mov_pp oC0, r0
-"
-}
-
-SubProgram "xbox360 " {
-Keywords { "SOFTPARTICLES_ON" }
-Float 1 [_InvFade]
-Vector 0 [_ZBufferParams]
-SetTexture 0 [_MainTex] 2D
-SetTexture 1 [_CameraDepthTexture] 2D
-// Shader Timing Estimate, in Cycles/64 pixel vector:
-// ALU: 13.33 (10 instructions), vertex: 0, texture: 8,
-//   sequencer: 8, interpolator: 16;    4 GPRs, 48 threads,
-// Performance (if enough threads): ~16 cycles per vector
-// * Texture cycle estimates are assuming an 8bit/component texture with no
-//     aniso or trilinear filtering.
-
-"ps_360
-backbbaaaaaaabdmaaaaaaleaaaaaaaaaaaaaaceaaaaaaaaaaaaabbaaaaaaaaa
-aaaaaaaaaaaaaaoiaaaaaabmaaaaaanlppppadaaaaaaaaaeaaaaaabmaaaaaaaa
-aaaaaaneaaaaaagmaaadaaabaaabaaaaaaaaaaiaaaaaaaaaaaaaaajaaaacaaab
-aaabaaaaaaaaaajmaaaaaaaaaaaaaakmaaadaaaaaaabaaaaaaaaaaiaaaaaaaaa
-aaaaaalfaaacaaaaaaabaaaaaaaaaameaaaaaaaafpedgbgngfhcgbeegfhahegi
-fegfhihehfhcgfaaaaaeaaamaaabaaabaaabaaaaaaaaaaaafpejgohgeggbgegf
-aaklklklaaaaaaadaaabaaabaaabaaaaaaaaaaaafpengbgjgofegfhiaafpfkec
-hfgggggfhcfagbhcgbgnhdaaaaabaaadaaabaaaeaaabaaaaaaaaaaaahahdfpdd
-fpdaaadccodacodcdadddfddcodaaaklaaaaaaaaaaaaaalebaaaadaaaaaaaaai
-aaaaaaaaaaaacigdaaadaaahaaaaaaabaaaadafaaaaapbfbaaaapckaaafaeaac
-aaaabcaameaaaaaaaaaagaagcaambcaaccaaaaaaemeaaaacaaaaaablocacacab
-miadacadaamglaaaobaaabaabaaiaaabbpbppgiiaaaaeaaababidagbbpbppppi
-aaaaeaaamiabacadaagmmgbliladaaaaemchacaaaamamagmobaaacadmiacacac
-aclbmgaaoaacabaakkbaabacaaaaaaebocacacabmiabacacaagmblaaobabacaa
-miaiacacaagmblaaobacaaaamiahacacaamablaaobaaacaamiapiaaaaaaaaaaa
-ocacacaaaaaaaaaaaaaaaaaaaaaaaaaa"
-}
-
-SubProgram "ps3 " {
-Keywords { "SOFTPARTICLES_ON" }
-Vector 0 [_ZBufferParams]
-Float 1 [_InvFade]
-SetTexture 0 [_CameraDepthTexture] 2D
-SetTexture 1 [_MainTex] 2D
-"sce_fp_rsx // 15 instructions using 2 registers
-[Configuration]
-24
-ffffffff0000c0250003fffd000000000000840002000000
-[Offsets]
-2
-_ZBufferParams 1 0
-00000020
-_InvFade 1 0
-00000070
-[Microcode]
-240
-a2001800c8011c9dc8000001c8003fe102000400c8001c9d54020001fe020001
-0000000000000000000000000000000002001a00c8001c9dc8000001c8000001
-1e7e7d00c8001c9dc8000001c8000001a200030054011c9fc8000001c8003fe1
-0800820000001c9c00020000c800000100000000000000000000000000000000
-9e021702c8011c9dc8000001c8003fe13e800140c8011c9dc8000001c8003fe1
-10000200c9001c9d54000001c80000010e000100c9001c9dc8000001c8000001
-1e800200c8001c9dc8040001c80000010e800240c9001c9dff000001c8000001
-10810140c9001c9dc8000001c8000001
 "
 }
 

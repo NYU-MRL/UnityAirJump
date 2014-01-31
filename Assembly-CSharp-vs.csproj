@@ -61,6 +61,7 @@
      <Compile Include="Assets\OVR\Scripts\OVRPlayerController.cs" />
      <Compile Include="Assets\OVR\Scripts\OVRPresetManager.cs" />
      <Compile Include="Assets\OVR\Scripts\OVRUtils.cs" />
+     <Compile Include="Assets\Scripts\Bird.cs" />
      <Compile Include="Assets\Scripts\EndlessSceneController.cs" />
      <Compile Include="Assets\Scripts\GametrakController.cs" />
      <Compile Include="Assets\Volumetric Clouds\Scripts\CloudsToy.cs" />

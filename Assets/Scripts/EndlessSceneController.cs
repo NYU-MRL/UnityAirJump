@@ -39,26 +39,26 @@ public class EndlessSceneController : MonoBehaviour {
 	public List<GameObject> cloudList = new List<GameObject>();
 	// Update is called once per frame
 	void Update () {
-        float x = Input.GetAxis("GametrakX");
-        float y = Input.GetAxis("GametrakY");
-        float z = Input.GetAxis("GametrakZ");
-        float x1 = Input.GetAxis("GametrakX1");
-        float y1 = Input.GetAxis("GametrakY1");
-        float z1 = Input.GetAxis("GametrakZ1");
-        //Debug.Log("Gametrak: " + x + ", " + y + ", " + z + ", " + x1 + ", " + y1 + ", " + z1);
+//        float x = Input.GetAxis("GametrakX");
+//        float y = Input.GetAxis("GametrakY");
+//        float z = Input.GetAxis("GametrakZ");
+//        float x1 = Input.GetAxis("GametrakX1");
+//        float y1 = Input.GetAxis("GametrakY1");
+//        float z1 = Input.GetAxis("GametrakZ1");
+//        Debug.Log("Gametrak: " + x + ", " + y + ", " + z + ", " + x1 + ", " + y1 + ", " + z1);
 		curTime = Time.time;
-        z_diff = (z1 - z) * 100 / 20;
+//        z_diff = (z1 - z) * 100 / 20;
         //cloud keep flying backward
         //if(Time.)
 		if(curTime < 500/speed+1f){
         	cloud01.transform.Translate(0, 0, -Time.deltaTime * speed);
-			cloud01.transform.Translate(Time.deltaTime* turnSpeed * z_diff, 0, 0);
+//			cloud01.transform.Translate(Time.deltaTime* turnSpeed * z_diff, 0, 0);
 		}
 		if(curTime < 750/speed+1f){
         	cloud02.transform.Translate(0, 0, -Time.deltaTime * speed);
        		 //direction change, trigged by gametrak z axis
         
-        	cloud02.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);
+//        	cloud02.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);
 		}
 
 
