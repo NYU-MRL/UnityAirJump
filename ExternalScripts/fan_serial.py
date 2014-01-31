@@ -2,7 +2,6 @@ import os
 import serial
 import zmq
 from serial.tools import list_ports
-from time import sleep
 
 def serial_ports():
     if os.name == "nt":
