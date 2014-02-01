@@ -5,6 +5,8 @@ Project("{031F3520-2D5B-1CF5-9205-FF720B29105B}") = "UnityAirJump", "Assembly-CS
 EndProject
 Project("{031F3520-2D5B-1CF5-9205-FF720B29105B}") = "UnityAirJump", "Assembly-CSharp-Editor.csproj", "{11FB8EE3-7C89-2D30-5B51-3EC9A6403F0E}"
 EndProject
+Project("{031F3520-2D5B-1CF5-9205-FF720B29105B}") = "UnityAirJump", "Assembly-UnityScript.unityproj", "{8D802BF3-22FD-6CF7-912B-918D7700AFEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{11FB8EE3-7C89-2D30-5B51-3EC9A6403F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11FB8EE3-7C89-2D30-5B51-3EC9A6403F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11FB8EE3-7C89-2D30-5B51-3EC9A6403F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D802BF3-22FD-6CF7-912B-918D7700AFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D802BF3-22FD-6CF7-912B-918D7700AFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D802BF3-22FD-6CF7-912B-918D7700AFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D802BF3-22FD-6CF7-912B-918D7700AFEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																		GlobalSection(MonoDevelopProperties) = preSolution
+																					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

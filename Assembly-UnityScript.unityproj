@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{2C914BAD-23D1-D2FD-EC8C-C6A32211C73B}</ProjectGuid>
+	<ProjectGuid>{8D802BF3-22FD-6CF7-912B-918D7700AFEA}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,42 +46,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Tuscany\Particles\Scripts\Light_Flicker.js" />
-     <Compile Include="Assets\Tuscany\Scripts\BoatBehavior.js" />
-     <Compile Include="Assets\Tuscany\Scripts\Butterfly.js" />
-     <Compile Include="Assets\Tuscany\Scripts\Character.js" />
-     <Compile Include="Assets\Tuscany\Scripts\CustomGrass.js" />
-     <Compile Include="Assets\Tuscany\Scripts\GrassController.js" />
-     <Compile Include="Assets\Tuscany\Scripts\KeyboardInput.js" />
-     <Compile Include="Assets\Tuscany\Scripts\RandomAnimationStart.js" />
-     <Compile Include="Assets\Tuscany\Scripts\Rotate.js" />
-     <Compile Include="Assets\Tuscany\Scripts\ScrollUVs.js" />
-     <None Include="Assets\Tuscany\Models\Materials\TransparentTerrain.shader" />
+     <Compile Include="Assets\LobserScene\flap.js" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 3.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 1.shader" />
-     <None Include="Assets\Tuscany\Particles\Shaders\Particle Alpha Blend_IgnoreFog.shader" />
      <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 5.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 6.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\DoubleSided.shader" />
      <None Include="Assets\Resources\CloudsToy Shaders\CloudRealistic.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Resources\CloudsToy Shaders\CloudBright.shader" />
-     <None Include="Assets\Tuscany\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\OVR\OVRImageEffects\OVRLensCorrection_CA.shader" />
      <None Include="Assets\Volumetric Clouds\Instructions.txt" />
-     <None Include="Assets\Tuscany\Models\Materials\DoubleSided ButterFly.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\AlphaTest-DiffuseDoublesided.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 4.shader" />
-     <None Include="Assets\Tuscany\Particles\Shaders\AddSmooth_Layer.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 8.shader" />
+     <None Include="Assets\LobserScene\wing.shader" />
      <None Include="Assets\OVR\OVRImageEffects\OVRLensCorrection.shader" />
      <None Include="Assets\OVR\Shaders\OVRGUIShader.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 2.shader" />
      <None Include="Assets\Plugins\donotdelete.txt" />
-     <None Include="Assets\Tuscany\Models\Materials\Vertex color unlit 7.shader" />
-     <None Include="Assets\Tuscany\Particles\Shaders\Add_Layer.shader" />
-     <None Include="Assets\Tuscany\Models\Materials\AlphaTest-DiffuseBack.shader" />
  <Reference Include="CloudsToy">
  <HintPath>Assets\Volumetric Clouds\DLL\CloudsToy.dll</HintPath>
  </Reference>
