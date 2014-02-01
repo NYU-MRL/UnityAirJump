@@ -13,6 +13,7 @@
 *.unityproj
 *.sln
 *.meta
+*.userprefs
 
 # SQL Server files
 App_Data/*.mdf
