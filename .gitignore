@@ -1,3 +1,7 @@
+
+*.dll
+
+
 ####################
 # Unity
 #####################
@@ -8,6 +12,7 @@
 *.csproj
 *.unityproj
 *.sln
+*.meta
 
 # SQL Server files
 App_Data/*.mdf
