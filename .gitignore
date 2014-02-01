@@ -9,6 +9,7 @@
 /Temp
 /obj
 /library
+/Library/metadata/
 *.csproj
 *.unityproj
 *.sln
