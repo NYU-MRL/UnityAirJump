@@ -1,6 +1,6 @@
 
 *.dll
-
+*.swp
 
 ####################
 # Unity
@@ -8,12 +8,12 @@
 
 /Temp
 /obj
-/library
-/Library/metadata/
+/Library
 *.csproj
 *.unityproj
 *.sln
-*.meta
+*pidb
+#*.meta
 *.userprefs
 
 # SQL Server files
