@@ -26,10 +26,8 @@ public class Bird : MonoBehaviour {
 	}
 	
 	void BroadcastUpdates(){
-		BroadcastMessage("BirdWingForceL", WingForceL.magnitude);
-		BroadcastMessage("BirdWingForceR", WingForceR.magnitude);
-		BroadcastMessage("BirdWingHeightL", WingL.magnitude);
-		BroadcastMessage("BirdWingHeightR", WingR.magnitude);
+		BroadcastMessage("BirdWingForceLR", new Vector2(WingForceL.magnitude,WingForceR.magnitude));
+		BroadcastMessage("BirdWingHeightLR", new Vector2(WingL.magnitude, WingR.magnitude));
 	}
 
 	void ReadController(){
