@@ -22,6 +22,14 @@ public class Bird : MonoBehaviour {
 		this.rigidbody.AddRelativeForce(WingForceL, ForceMode.Force);
 		this.rigidbody.AddRelativeForce(WingForceR, ForceMode.Force);
 
+		BroadcastUpdates();
+	}
+	
+	void BroadcastUpdates(){
+		BroadcastMessage("BirdWingForceL", WingForceL.magnitude);
+		BroadcastMessage("BirdWingForceR", WingForceR.magnitude);
+		BroadcastMessage("BirdWingHeightL", WingL.magnitude);
+		BroadcastMessage("BirdWingHeightR", WingR.magnitude);
 	}
 
 	void ReadController(){
@@ -38,12 +46,8 @@ public class Bird : MonoBehaviour {
 
 		WingForceR = killUpwardsFlaps(valR - WingR) * Time.deltaTime * 50000;
 		WingForceL = killUpwardsFlaps(valL - WingL) * Time.deltaTime * 50000;
-		BroadcastMessage("BirdWingForceL", WingForceL.magnitude);
-		BroadcastMessage("BirdWingForceR", WingForceR.magnitude);
 		WingL = valL;
 		WingR = valR;
-		BroadcastMessage("BirdWingHeightL", WingL.magnitude);
-		BroadcastMessage("BirdWingHeightR", WingR.magnitude);
 		NeckPosition = (WingL + WingR) * 0.5f;
 	}
 
