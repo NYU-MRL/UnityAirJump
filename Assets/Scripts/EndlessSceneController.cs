@@ -39,17 +39,7 @@ public class EndlessSceneController : MonoBehaviour {
 	public List<GameObject> cloudList = new List<GameObject>();
 	// Update is called once per frame
 	void Update () {
-//        float x = Input.GetAxis("GametrakX");
-//        float y = Input.GetAxis("GametrakY");
-//        float z = Input.GetAxis("GametrakZ");
-//        float x1 = Input.GetAxis("GametrakX1");
-//        float y1 = Input.GetAxis("GametrakY1");
-//        float z1 = Input.GetAxis("GametrakZ1");
-//        Debug.Log("Gametrak: " + x + ", " + y + ", " + z + ", " + x1 + ", " + y1 + ", " + z1);
 		curTime = Time.time;
-//        z_diff = (z1 - z) * 100 / 20;
-        //cloud keep flying backward
-        //if(Time.)
 		if(curTime < 500/speed+1f){
         	cloud01.transform.Translate(0, 0, -Time.deltaTime * speed);
 //			cloud01.transform.Translate(Time.deltaTime* turnSpeed * z_diff, 0, 0);
@@ -62,10 +52,9 @@ public class EndlessSceneController : MonoBehaviour {
 		}
 
 
-		Debug.Log (curTime - prevTime + "  " + 250/speed);
+//		Debug.Log (curTime - prevTime + "  " + 250/speed);
 		if(curTime - prevTime > 500/speed || (curTime == 0 && prevTime == 0)){
 			GameObject cloudNew = (GameObject)Instantiate(prefab, new Vector3(0, 1, 750), Quaternion.Euler(0, 0, 0));
-
 			cloudList.Add(cloudNew);
 
 			//cloudNew.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);

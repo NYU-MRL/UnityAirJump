@@ -1,8 +1,8 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Bird : MonoBehaviour {
-
+	public float maxRotationRadians;
 	private const float 	THIRD_PI 	= Mathf.PI * 0.33333333f,
 								HALF_PI 	= Mathf.PI * 0.5f;	
 	private Vector3 WingL, WingR, WingForceL, WingForceR, NeckPosition;
@@ -19,8 +19,11 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		ReadController();
 //		CalculateDrag();
-		this.rigidbody.AddRelativeForce(WingForceL, ForceMode.Force);
-		this.rigidbody.AddRelativeForce(WingForceR, ForceMode.Force);
+		rigidbody.AddRelativeForce(WingForceL, ForceMode.Force);
+		rigidbody.AddRelativeForce(WingForceR, ForceMode.Force);
+
+		var rotateY =  map ((WingL.y - WingR.y),-1, 1,-maxRotationRadians, maxRotationRadians);
+		transform.Rotate(0,rotateY,0);
 
 		BroadcastUpdates();
 	}
@@ -46,7 +49,6 @@ public class Bird : MonoBehaviour {
 		WingForceL = killUpwardsFlaps(valL - WingL) * Time.deltaTime * 50000;
 		WingL = valL;
 		WingR = valR;
-		NeckPosition = (WingL + WingR) * 0.5f;
 	}
 
 //	void GetDragForce() {
