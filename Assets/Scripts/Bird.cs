@@ -19,10 +19,14 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		ReadController();
 //		CalculateDrag();
-		rigidbody.AddRelativeForce(WingForceL, ForceMode.Force);
-		rigidbody.AddRelativeForce(WingForceR, ForceMode.Force);
+		rigidbody.AddRelativeForce(new Vector3(0,WingForceL.magnitude, 5), ForceMode.Force);
+		rigidbody.AddRelativeForce(new Vector3(0,WingForceR.magnitude, 5), ForceMode.Force);
 
+//		transform.localRotation
 		var rotateY =  map ((WingL.y - WingR.y),-1, 1,-maxRotationRadians, maxRotationRadians);
+//		var localRot = Quaternion.Euler(0,0,map( (WingL.y - WingR.y),-1,1,-HALF_PI,HALF_PI));
+//		var localTranform = GameObject.Find ("BirdLocalTransform");
+//		localTranform.transform.Rotate(0,0,map( (WingL.y - WingR.y),-1,1,-HALF_PI,HALF_PI));
 		transform.Rotate(0,rotateY,0);
 
 		BroadcastUpdates();

@@ -46,18 +46,15 @@ public class EndlessSceneController : MonoBehaviour {
 		}
 		if(curTime < 750/speed+1f){
         	cloud02.transform.Translate(0, 0, -Time.deltaTime * speed);
-       		 //direction change, trigged by gametrak z axis
+
+			//direction change, trigged by gametrak z axis
         
 //        	cloud02.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);
 		}
 
-
-//		Debug.Log (curTime - prevTime + "  " + 250/speed);
 		if(curTime - prevTime > 500/speed || (curTime == 0 && prevTime == 0)){
-			GameObject cloudNew = (GameObject)Instantiate(prefab, new Vector3(0, 1, 750), Quaternion.Euler(0, 0, 0));
+			GameObject cloudNew = (GameObject) Instantiate(prefab, new Vector3(0, 1, 750), Quaternion.Euler(0, 0, 0));
 			cloudList.Add(cloudNew);
-
-			//cloudNew.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);
 			prevTime = curTime;
 		}
 
@@ -71,27 +68,6 @@ public class EndlessSceneController : MonoBehaviour {
 				cloud.transform.Translate(Time.deltaTime * turnSpeed * z_diff, 0, 0);
 			}
 		}
-		//if(cloudNew != null)
-			//cloudNew.transform.Translate(0, 0, -Time.deltaTime * speed);
-		/*
-		distance += Vector3.Distance(this.transform.position, lastPos);
-		lastPos = this.transform.position;
-		if(distance > 2220){
-			//isCloudCreated = true;
-			distance = 0;
-			count++;
-			//cloud01.transform.position = new Vector3(0, 1, 4440);
-			//this.transform.position = new Vector3(0, 1, 0);
-			//GameObject cloud03 = new GameObject("Cloud03");
-			GameObject test = (GameObject)Instantiate(prefab, new Vector3(0, 1, count*2220), Quaternion.Euler(0, 0, 0));
-			Destroy(test, 2*2220/speed+1);
-			//if(test.transform.position.z < this.transform.position.z - 1110){
-			//	Destroy(test);
-			//}
-		}
-
-		//this.transform.Translate(0, 0, speed*Time.deltaTime);
-		*/
 
 	}
 }
