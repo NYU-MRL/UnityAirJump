@@ -2,31 +2,38 @@
 using System;
 using System.Collections;
 using System.IO.Ports;
-
+ 
 public class FanController : MonoBehaviour {
 
-	float forceRight, forceLeft, heightRight, heightLeft;
-	float frDiff, flDiff, hrDiff, hlDiff;
+	public float velocity;
+	public float rotation;
 
 	SerialPort serial;
 
 	void Start () {
 		serial = findArduino ();
 
-		forceRight = 0.0f;
-		forceLeft = 0.0f;
-		heightRight = 0.0f;
-		heightLeft = 0.0f;
+		//updateFans (0, 0, 0);
+
+//		forceRight = 0.0f;
+//		forceLeft = 0.0f;
+//		heightRight = 0.0f;
+//		heightLeft = 0.0f;
 	}
 	
 	void Update () {
-		// if height is increasing, decrease fans & vice versa
-		// if force is increasing, increase fans & vice versa
-		int leftFan = Convert.ToInt32 (map (flDiff, -100.0f, 100.0f, 1.0f, 3.0f));
-		int rightFan = Convert.ToInt32 (map (frDiff, -100.0f, 100.0f, 1.0f, 3.0f));
-		int midFan = Convert.ToInt32((leftFan + rightFan) / 2.0);
+		int mid = (int) map (velocity, 0, 60, 0, 3);
+		int left=0, right=0;
+		if (rotation < 0) {
+			left =(int)  map (rotation, -90, 0, 3, 0);
+		} 
+		else {
+			right = (int) map (rotation, 0, 90, 0, 3);
+		}
 
-		updateFans (leftFan, rightFan, midFan);
+		Debug.Log ("velocity = " + velocity);
+		Debug.Log ("angle = " + rotation);
+		//updateFans (left, mid, right);
 	}
 
 	private SerialPort findArduino() {
@@ -35,15 +42,21 @@ public class FanController : MonoBehaviour {
 
 		foreach (string port in ports) {
 			testPort = new SerialPort(port, 9600);
-			testPort.Open();
 			testPort.ReadTimeout = 50;
 			testPort.WriteTimeout = 50;
-			testPort.Write("c");
+			Debug.LogWarning("Serial: about to open");
+			testPort.Open();
+			Debug.LogWarning(" Serial: about to write");
+			byte[] testMsg = {(byte) 0xC0 };
+
+			testPort.Write(testMsg, 0, 1);
+			Debug.LogWarning("Serial : just wrote");
 			int msg = testPort.ReadChar();
+			Debug.LogWarning("Serial : Got message " + msg);
 			if (msg == 121) {
 				Debug.LogWarning("found the arduino on port " + port);
 				return testPort;
-			}
+			} 
 		}
 
 		Debug.LogWarning ("didn't find the arduino");
@@ -51,27 +64,30 @@ public class FanController : MonoBehaviour {
 	}
 
 	private void updateFans(int left, int mid, int right) {
+		byte[] fans = {(byte) (left & 0x3 | (mid & 0x3) << 2 | (right & 0x3) << 4)};
 		// probably send string "left,mid,right" to serial port
-		serial.Write (left.ToString());
+		serial.Write(fans,0,1);
 	}
 
-	public void BirdWingForceLR(Vector2 f){
-		frDiff = f.y - forceRight;
-		flDiff = f.x - forceLeft;
-		
-		forceRight = f.y;
-		forceLeft = f.x;
+	public void BirdVelocity(Vector3 vel)
+	{
+		velocity = vel.magnitude;
 	}
-	
-	public void BirdWingHeightLR(Vector2 h){
-		hrDiff = h.y - heightRight;
-		hlDiff = h.x - heightLeft;
 
-		heightRight = h.y;
-		heightLeft = h.x;
+	public void BirdZRotation(float rot)
+	{
+		rotation = rot;
 	}
 
 	private float map(float x, float  inLow, float inHigh, float outLow, float outHigh){
+		if (x > inHigh) {
+			return outHigh;
+		}
+
+		if (x < inLow) {
+			return outLow;
+		}
+
 		return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
 	}
 }

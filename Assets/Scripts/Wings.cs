@@ -18,6 +18,7 @@ public class Wings : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		transform.rotation=GameObject.Find("Bird").transform.rotation;
 		leftWing.transform.localEulerAngles = new Vector3 (0, 0, Mathf.Sin (t) * flapAmp);
 		rightWing.transform.localEulerAngles = new Vector3 (180, 0, Mathf.Sin (t) * flapAmp);
 

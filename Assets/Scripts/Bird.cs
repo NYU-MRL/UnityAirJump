@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bird : MonoBehaviour {
 	public float maxRotationRadians;
+	public float maxVelocity;
 	private const float 	THIRD_PI 	= Mathf.PI * 0.33333333f,
 								HALF_PI 	= Mathf.PI * 0.5f;	
 	private Vector3 WingL, WingR, WingForceL, WingForceR, NeckPosition;
@@ -19,15 +20,20 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		ReadController();
 //		CalculateDrag();
-		rigidbody.AddRelativeForce(new Vector3(0,WingForceL.magnitude, 5), ForceMode.Force);
-		rigidbody.AddRelativeForce(new Vector3(0,WingForceR.magnitude, 5), ForceMode.Force);
+		rigidbody.AddRelativeForce(new Vector3(0,WingForceL.magnitude, WingForceL.magnitude * .5f), ForceMode.Force);
+		rigidbody.AddRelativeForce(new Vector3(0,WingForceR.magnitude, WingForceR.magnitude * .5f), ForceMode.Force);
 
-//		transform.localRotation
-		var rotateY =  map ((WingL.y - WingR.y),-1, 1,-maxRotationRadians, maxRotationRadians);
-		var localRot = map( (WingL.y - WingR.y),-1,1,-90,90);
+		var wingLevel =  (WingL.y - WingR.y);
+		var stabilized = wingLevel * wingLevel * wingLevel; //x^3
+
+		var rotateY =  map (stabilized,-1, 1,-maxRotationRadians, maxRotationRadians);
+		transform.Rotate(0,rotateY,0);
+
+		var localRot = map(stabilized,-1,1,-90,90);
 		var localTranform = GameObject.Find ("BirdLocalTransform");
 		localTranform.transform.rotation = Quaternion.AngleAxis(localRot, Vector3.forward);
-		transform.Rotate(0,rotateY,0);
+
+		rigidbody.velocity = rigidbody.velocity.magnitude < maxVelocity? rigidbody.velocity : rigidbody.velocity.normalized * maxVelocity; 
 
 		BroadcastUpdates();
 	}
@@ -35,6 +41,8 @@ public class Bird : MonoBehaviour {
 	void BroadcastUpdates(){
 		BroadcastMessage("BirdWingForceLR", new Vector2(WingForceL.magnitude,WingForceR.magnitude));
 		BroadcastMessage("BirdWingHeightLR", new Vector2(WingL.magnitude, WingR.magnitude));
+		BroadcastMessage("BirdVelocity", rigidbody.velocity);
+		BroadcastMessage("BirdZRotation", transform.localRotation.eulerAngles.z);
 	}
 
 	void ReadController(){
