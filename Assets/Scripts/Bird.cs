@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour {
 								HALF_PI 	= Mathf.PI * 0.5f;	
 	private Vector3 WingL, WingR, WingForceL, WingForceR, NeckPosition;
 	private Vector3 LocalHeading = new Vector3(0,1,1);
+	float localRot;
 
 	void Start () {
 		WingL = new Vector3();
@@ -24,12 +25,12 @@ public class Bird : MonoBehaviour {
 		rigidbody.AddRelativeForce(new Vector3(0,WingForceR.magnitude, WingForceR.magnitude * .5f), ForceMode.Force);
 
 		var wingLevel =  (WingL.y - WingR.y);
-		var stabilized = wingLevel * wingLevel * wingLevel; //x^3
+		var stabilized = wingLevel * wingLevel * wingLevel ; //x^3
 
 		var rotateY =  map (stabilized,-1, 1,-maxRotationRadians, maxRotationRadians);
 		transform.Rotate(0,rotateY,0);
 
-		var localRot = map(stabilized,-1,1,-90,90);
+		localRot = map(stabilized,-1,1,-90,90);
 		var localTranform = GameObject.Find ("BirdLocalTransform");
 		localTranform.transform.rotation = Quaternion.AngleAxis(localRot, Vector3.forward);
 
@@ -42,7 +43,7 @@ public class Bird : MonoBehaviour {
 		BroadcastMessage("BirdWingForceLR", new Vector2(WingForceL.magnitude,WingForceR.magnitude));
 		BroadcastMessage("BirdWingHeightLR", new Vector2(WingL.magnitude, WingR.magnitude));
 		BroadcastMessage("BirdVelocity", rigidbody.velocity);
-		BroadcastMessage("BirdZRotation", transform.localRotation.eulerAngles.z);
+		BroadcastMessage("BirdZRotation", localRot);
 	}
 
 	void ReadController(){
