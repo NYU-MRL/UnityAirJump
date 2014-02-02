@@ -24,9 +24,9 @@ public class Bird : MonoBehaviour {
 
 //		transform.localRotation
 		var rotateY =  map ((WingL.y - WingR.y),-1, 1,-maxRotationRadians, maxRotationRadians);
-//		var localRot = Quaternion.Euler(0,0,map( (WingL.y - WingR.y),-1,1,-HALF_PI,HALF_PI));
-//		var localTranform = GameObject.Find ("BirdLocalTransform");
-//		localTranform.transform.Rotate(0,0,map( (WingL.y - WingR.y),-1,1,-HALF_PI,HALF_PI));
+		var localRot = map( (WingL.y - WingR.y),-1,1,-90,90);
+		var localTranform = GameObject.Find ("BirdLocalTransform");
+		localTranform.transform.rotation = Quaternion.AngleAxis(localRot, Vector3.forward);
 		transform.Rotate(0,rotateY,0);
 
 		BroadcastUpdates();
